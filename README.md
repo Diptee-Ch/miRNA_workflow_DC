@@ -1,5 +1,5 @@
 # miRNA_workflow_DC
-This workflow was created to process small RNA transcriptome data in Palmetto Cluster. 
+This workflow was created to process small RNA transcriptome data in Palmetto Cluster at Clemosn University. 
 # Requirements
 The following requirements are available as open source; correct installation process available at source code itself. 
 * FastQC 0.10.1 (Andrews, 2010)
@@ -19,4 +19,4 @@ Maps and count to create a count file. Reference file in .gtf format.
 ## 5_Differential_analysis.R
 Differential analysis using DESeq2 (modifed form William Poehlman) 
 
->The workflow was optimized by Diptee Chaulagain and script written by Dewan Chaulagain. 
+>This work is part of Diptee Chaulagain's PhD dissertation done in Frugoli Lab, Department of Genetics and Biochemistry, Clemson University. 
