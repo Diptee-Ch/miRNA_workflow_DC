@@ -1,0 +1,41 @@
+#PBS -N BLASTJOB
+#PBS -l select=1:ncpus=40:mem=372gb
+#PBS -l walltime=8:00:00
+
+num_thrd=40
+
+tempdirname="tmp_$xpref"
+tempval="_T.fasta"
+blast_input="/path_to_file/$tempdirname/$xpref$tempval"
+tempval="_TR.txt"
+blast_output="/path_to_file/$tempdirname/$xpref$tempval"
+
+module add anaconda3/2.5.0
+source activate env
+
+export PATH="$PATH:/software/ncbi-blast-2.9.0+/bin"
+echo `date`
+blastn -query $blast_input -db data/MtrunA17_rRNA_tRNA.fasta -task blastn -ungapped -num_threads $num_thrd -max_hsps 1 -out $blast_output -word_size 10 -outfmt "6 qseqid qseq length"
+echo `date`
+
+tempval="_TR_uniq.txt"
+first_column="/path_to_file/$tempdirname/$xpref$tempval"
+cut -f 1 $blast_output | uniq >> $first_column 
+rm $blast_output
+
+
+tempval="_T.fasta"
+fasta_input="/path_to_file/$tempdirname/$xpref$tempval"
+tempval="_TR.fasta"
+fasta_output="/path_to_file/$tempdirname/$xpref$tempval"
+tempval="_TR_uniq.txt"
+uniq_seq="/path_to_file/$tempdirname/$xpref$tempval"
+
+grep -vwF -f $uniq_seq $fasta_input | grep -A 1 ">" | grep -v "-" >> $fasta_output
+
+tempval="_TRF.fasta"
+filtered_fasta="/path_to_file/$tempdirname/$xpref$tempval"
+grep -B1 -x "^[ATGC]\{18,25\}" $fasta_output | grep -v "-" >> $filtered_fasta
+
+
+
