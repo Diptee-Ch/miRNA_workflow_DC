@@ -19,4 +19,4 @@ Maps and count to create a count file. Reference file in .gtf format.
 ## 5_Differential_analysis.R
 Differential analysis using DESeq2 (modifed form William Poehlman) 
 
->This work is part of Diptee Chaulagain's PhD dissertation done in Frugoli Lab, Department of Genetics and Biochemistry, Clemson University. 
+>The workflow was optimized by Diptee Chaulagain and script written by Dewan Chaulagain. This work is part of Diptee Chaulagain's PhD dissertation done in Frugoli Lab, Department of Genetics and Biochemistry, Clemson University. 
